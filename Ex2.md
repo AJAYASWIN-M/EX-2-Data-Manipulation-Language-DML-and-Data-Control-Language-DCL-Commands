@@ -30,6 +30,11 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 ### Q1) Update all the records of manager table by increasing 10% of their salary as bonus.
 
 ### QUERY:
+```sql
+SQL> UPDATE manager
+  2  SET salary = salary + (salary * 0.10),
+  3  annualsalary = annualsalary + (annualsalary * 0.10);
+```
 
 
 ### OUTPUT:
@@ -40,7 +45,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
-
+```sql
+SQL> DELETE FROM manager WHERE salary < 2750;
+```
 
 ### OUTPUT:
 ![ex 2 02](https://github.com/AJAYASWIN-M/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/118679692/356d7a8b-589b-4dd8-a9f2-6b431100ddc5)
@@ -50,7 +57,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
-
+```sql
+SQL> SELECT ename AS "Name", salary * 12 AS "Annual Salary" FROM manager;
+```
 
 ### OUTPUT:
 ![ex 2 03](https://github.com/AJAYASWIN-M/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/118679692/8a03d1fd-9bb6-4ca6-8184-f7b7a76c65bd)
@@ -60,6 +69,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE designation = 'clerk';
+```
 
 
 ### OUTPUT:
@@ -70,24 +82,36 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
+``` sql
+SQL> SELECT ename FROM manager WHERE designation != 'manager';
+```
 
 
 ### OUTPUT:
+![ex 2 6](https://github.com/AJAYASWIN-M/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/118679692/98b85104-6403-4c11-9fb7-3f06ac076d98)
 
 
 ### Q7)	List the names of employees not eligible for commission.
 
 
 ### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE commission = 0;
+```
 
 
 ### OUTPUT:
+![ex 2 7](https://github.com/AJAYASWIN-M/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/118679692/d0cca37e-a2b7-40a3-9ce1-843b1e748dd5)
+
 
 
 ### Q8)	List employees whose name either start or end with ‘s’.
 
 
 ### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE ename LIKE 'S%' OR ename LIKE '%s';
+```
 
 
 ### OUTPUT:
@@ -99,6 +123,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
+```sql
+SQL> SELECT ename, designation, deptno, Hiredate FROM manager ORDER BY Hiredate ASC;
+```
 
 
 ### OUTPUT:
@@ -110,6 +137,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
+```sql
+SQL> SELECT * FROM manager WHERE Hiredate < TO_DATE('1981-09-30', 'YYYY-MM-DD');
+```
 
 
 ### OUTPUT:
@@ -121,6 +151,10 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
+```sql
+SQL> SELECT ename, deptno, salary FROM manager ORDER BY deptno ASC;
+SQL> SELECT ename, deptno, salary FROM manager ORDER BY deptno DESC;
+```
 
 
 ### OUTPUT:
@@ -132,7 +166,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 
 
 ### QUERY:
-
+```sql
+SQL> SELECT ename FROM manager WHERE deptno NOT IN (10,30,40);
+```
 
 ### OUTPUT:
 ![ex 2 12](https://github.com/AJAYASWIN-M/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/118679692/234268fa-233c-48a7-8ab5-eb118b0d53cf)
@@ -141,6 +177,9 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 ### Q13) Find number of rows in the table EMP
 
 ### QUERY:
+```sql
+SQL> SELECT count(*) FROM manager;
+```
 
 
 ### OUTPUT:
@@ -150,6 +189,11 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 ### Q14) Find maximum, minimum and average salary in EMP table.
 
 ### QUERY:
+```sql
+SQL> SELECT ename, salary, annualsalary FROM manager WHERE salary = (SELECT max(salary) FROM manager);
+SQL> SELECT ename, salary, annualsalary FROM manager WHERE salary = (SELECT min(salary) FROM manager);
+SQL> SELECT avg(salary) FROM manager;
+```
 
 
 ### OUTPUT:
@@ -160,7 +204,14 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 ### Q15) List the jobs and number of employees in each job. The result should be in the descending order of the number of employees.
 
 ### QUERY:
+```sql
+SQL> SELECT designation, count(*) AS "Number of Employees" FROM manager GROUP BY designation ORDER BY count(*) DESC;
+```
 
 
 ### OUTPUT:
 ![ex 2 14](https://github.com/AJAYASWIN-M/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/118679692/e69c720b-f655-4d0a-8249-911436d43a20)
+
+### Result:-
+Thus, Manager database is created and DML queries such as insertion, updation, deletion are executed using SQL.
+
